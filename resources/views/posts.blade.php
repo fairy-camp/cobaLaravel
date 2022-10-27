@@ -29,14 +29,16 @@
     @foreach ($posts->skip(1) as $post)
         <div class="col-md-6 mb-4">
             <div class="card">
+                <a href="/categories/{{ $post->category->slug }}" class="text-white text-decoration-none">
+                    <div class="position-absolute bg-dark px-4 py-2">{{ $post->category->name }}</div>
+                </a>
                 <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="card-img-top" alt="{ $post->category }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $post->title }}</h5>
                     <p class="card-text">{{ $post->excert }}</p>
                     <p>
                     <small class="text-muted">
-                        By. <a href="/authors/{{ $post->author->username }}" class="text-decoration-none"> {{ $posts[0]->author->name   }}</a> in <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a>
-                        {{ $post->created_at->diffForHumans() }}</p>
+                        By. <a href="/authors/{{ $post->author->username }}" class="text-decoration-none"> {{ $posts[0]->author->name }}</a> {{ $post->created_at->diffForHumans() }}</p>
                     </small>
                     </p>
                     <a href="/posts/{{ $post->slug }}" class="text-decoration-none btn btn-primary">Read more</a>
